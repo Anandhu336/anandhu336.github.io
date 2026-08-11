@@ -1,0 +1,335 @@
+/*
+  Modern animation & styling polish layered on top of virtual.css.
+  Kept as an additive stylesheet so the base template stays intact.
+*/
+
+:root {
+  --accent-a: #6f42c1;
+  --accent-b: #2960f7;
+  --accent-glow: rgba(111, 66, 193, 0.35);
+}
+
+/* Smoother, springier motion everywhere WOW.js toggles visibility */
+.wow {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* ---------- Hero ---------- */
+.page-home {
+  position: relative;
+}
+
+.page-home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(15, 12, 30, 0.55), rgba(41, 96, 247, 0.25));
+  pointer-events: none;
+}
+
+.page-home .caption {
+  position: relative;
+  z-index: 2;
+}
+
+.page-home h2.fg-theme {
+  background: linear-gradient(100deg, #b98bff, #7fa8ff 55%, #6f42c1);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: sheen 6s ease-in-out infinite;
+}
+
+@keyframes sheen {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.page-home .tagline {
+  animation: floatUp 4s ease-in-out infinite;
+}
+
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ---------- Profile name (About section) ---------- */
+.profile-name {
+  display: inline-block;
+  font-weight: 700;
+  background: linear-gradient(100deg, #6f42c1, #b98bff 45%, #2960f7);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: sheen 6s ease-in-out infinite;
+}
+
+/* ---------- Skill / progress bars ---------- */
+.progress {
+  overflow: hidden;
+}
+
+.progress-bar {
+  transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  background-image: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  background-size: 220% 100%;
+  animation: shimmer 2.8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 140% 0; }
+  100% { background-position: -60% 0; }
+}
+
+.progress-wrapper {
+  transition: transform 0.25s ease;
+}
+
+.progress-wrapper:hover {
+  transform: translateX(4px);
+}
+
+/* ---------- Portfolio cards ---------- */
+.grid-item {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.grid-item:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 18px 40px -12px var(--accent-glow);
+}
+
+.grid-item .img-place img {
+  transition: transform 0.5s ease;
+}
+
+.grid-item:hover .img-place img {
+  transform: scale(1.06);
+}
+
+/* ---------- Timeline ---------- */
+.theme-list li,
+.timeline li {
+  transition: transform 0.25s ease;
+}
+
+.timeline li:hover {
+  transform: translateX(4px);
+}
+
+/* ---------- Buttons ---------- */
+.btn-theme,
+.btn-theme-outline {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+}
+
+.btn-theme:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -8px var(--accent-glow);
+}
+
+.btn-theme-outline:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------- Featured project spotlight ---------- */
+.featured-project {
+  position: relative;
+  border-radius: 18px;
+  padding: 2px;
+  background: linear-gradient(120deg, var(--accent-a), var(--accent-b), var(--accent-a));
+  background-size: 220% 220%;
+  animation: borderFlow 8s ease infinite;
+}
+
+@keyframes borderFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.featured-project__inner {
+  border-radius: 16px;
+  background: #14121f;
+  color: #f1eefc;
+  padding: 2.25rem;
+}
+
+.featured-project__inner h5,
+.featured-project__inner .fg-dark {
+  color: #f1eefc !important;
+}
+
+.featured-project__eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #b98bff;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.featured-project__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.tech-badge {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #e7e1ff;
+  background: rgba(111, 66, 193, 0.25);
+  border: 1px solid rgba(185, 139, 255, 0.4);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.tech-badge:hover {
+  transform: translateY(-2px);
+  background: rgba(111, 66, 193, 0.45);
+}
+
+.featured-project__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.featured-project__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.featured-project__stats .stat-num {
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(100deg, #b98bff, #7fa8ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+}
+
+.featured-project__stats .stat-label {
+  font-size: 0.8rem;
+  color: #b9b3cf;
+}
+
+.featured-project__list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.featured-project__list li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin: 0.55rem 0;
+  color: #d9d4ef;
+}
+
+.featured-project__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(120deg, var(--accent-a), var(--accent-b));
+}
+
+/* ---------- Quote banner (replaces the old external quote widget) ---------- */
+.quote-banner {
+  position: relative;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  padding: 2rem 1.5rem;
+}
+
+.quote-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(10, 8, 20, 0.75), rgba(41, 96, 247, 0.35));
+}
+
+.quote-card {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  width: 100%;
+  text-align: center;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  background: rgba(12, 10, 22, 0.72);
+  border: 1px solid rgba(185, 139, 255, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+.quote-text {
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #f1eefc;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.quote-author {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #b98bff;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .quote-card {
+    padding: 1.5rem;
+  }
+  .quote-text {
+    font-size: 1.15rem;
+  }
+}
+
+/* ---------- Back to top ---------- */
+.btn-back_to_top {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-back_to_top:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px -8px var(--accent-glow);
+}
+
+@media (max-width: 767px) {
+  .featured-project__inner {
+    padding: 1.5rem;
+  }
+}
